@@ -21,6 +21,45 @@
   </div>
 </nav>
 
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="card">
+        <div class="card-header">
+          Autenticazione
+        </div>
+        <div class="card-body">
+          <form id="auth-form" class="row g-2">
+            <div class="col-12">
+              <small id="auth-user-info" class="text-muted">
+                Non sei loggato (guest)
+              </small>
+            </div>
+            <div class="col-md-4">
+              <input type="text" id="auth-username" class="form-control" placeholder="Username">
+            </div>
+            <div class="col-md-4">
+              <input type="email" id="auth-email" class="form-control" placeholder="Email (solo registrazione)">
+            </div>
+            <div class="col-md-4">
+              <input type="password" id="auth-password" class="form-control" placeholder="Password">
+            </div>
+            <div class="col-12 d-flex gap-2 mt-2">
+              <button type="button" id="login-btn" class="btn btn-sm btn-primary">Login</button>
+              <button type="button" id="register-btn" class="btn btn-sm btn-outline-primary">Registrati</button>
+              <button type="button" id="logout-btn" class="btn btn-sm btn-secondary ms-auto" style="display:none;">
+                Logout
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- il resto della pagina (filtri) sta qui accanto -->
+
+
+
 <main class="container my-4">
   <h1 class="mb-4">Lista Torrent</h1>
 
@@ -79,6 +118,48 @@
     <button type="button" id="reset-filters" class="btn btn-outline-secondary w-100">Reset</button>
   </div>
 </form>
+<div class="card mb-4" id="add-torrent-card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <span>Aggiungi nuovo torrent</span>
+  </div>
+  <div class="card-body">
+    <form id="add-torrent-form" class="row g-3">
+      <div class="col-md-4">
+        <label for="torrent-title" class="form-label">Titolo *</label>
+        <input type="text" id="torrent-title" class="form-control" required>
+      </div>
+
+      <div class="col-md-8">
+        <label for="torrent-description" class="form-label">Descrizione (max 160 caratteri) *</label>
+        <input type="text" id="torrent-description" class="form-control" maxlength="160" required>
+      </div>
+
+      <div class="col-md-4">
+        <label for="torrent-size" class="form-label">Dimensione (MB)</label>
+        <input type="number" id="torrent-size" class="form-control" min="0">
+      </div>
+
+      <div class="col-md-4">
+        <label for="torrent-categories" class="form-label">Categorie</label>
+        <input type="text" id="torrent-categories" class="form-control" placeholder="es. Film,Thriller,Sci-Fi">
+      </div>
+
+      <div class="col-md-4">
+        <label for="torrent-file-url" class="form-label">URL file .torrent *</label>
+        <input type="url" id="torrent-file-url" class="form-control" required>
+      </div>
+
+      <div class="col-md-12">
+        <label for="torrent-images" class="form-label">Immagini (URL separati da virgola)</label>
+        <input type="text" id="torrent-images" class="form-control" placeholder="es. https://.../img1.jpg, https://.../img2.jpg">
+      </div>
+
+      <div class="col-12 d-flex justify-content-end">
+        <button type="submit" class="btn btn-success">Salva torrent</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 
   <div id="torrents-container" class="row gy-3">
@@ -134,7 +215,8 @@
     </div>
 
 </main>
-
+  </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="main.js"></script>
 
