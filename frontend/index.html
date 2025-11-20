@@ -24,15 +24,119 @@
 <main class="container my-4">
   <h1 class="mb-4">Lista Torrent</h1>
 
-  <div class="mb-3">
-    <input id="search-input" class="form-control" placeholder="Cerca per titolo o descrizione...">
+<form id="filters-form" class="row g-3 mb-4">
+  <div class="col-md-3">
+    <label for="title" class="form-label">Titolo</label>
+    <input id="title" name="title" class="form-control" placeholder="es. Inception">
   </div>
+
+  <div class="col-md-3">
+    <label for="description" class="form-label">Descrizione</label>
+    <input id="description" name="description" class="form-control" placeholder="es. linux, corso...">
+  </div>
+
+  <div class="col-md-3">
+    <label for="categories" class="form-label">Categorie</label>
+    <input id="categories" name="categories" class="form-control" placeholder="es. Film,Thriller">
+  </div>
+
+  <div class="col-md-3">
+    <label class="form-label">Data (da / a)</label>
+    <div class="d-flex gap-1">
+      <input id="fromDate" name="fromDate" type="date" class="form-control">
+      <input id="toDate" name="toDate" type="date" class="form-control">
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <label class="form-label">Dimensione (MB)</label>
+    <div class="d-flex gap-1">
+      <input id="minSize" name="minSize" type="number" class="form-control" placeholder="min">
+      <input id="maxSize" name="maxSize" type="number" class="form-control" placeholder="max">
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <label class="form-label">Ordina per</label>
+    <div class="d-flex gap-1">
+      <select id="sort" name="sort" class="form-select">
+        <option value="created_at" selected>Data</option>
+        <option value="size">Dimensione</option>
+        <option value="title">Titolo</option>
+      </select>
+      <select id="order" name="order" class="form-select">
+        <option value="desc" selected>Decrescente</option>
+        <option value="asc">Crescente</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-md-3 d-flex align-items-end">
+    <button type="submit" class="btn btn-primary w-100">Applica filtri</button>
+  </div>
+
+  <div class="col-md-3 d-flex align-items-end">
+    <button type="button" id="reset-filters" class="btn btn-outline-secondary w-100">Reset</button>
+  </div>
+</form>
+
 
   <div id="torrents-container" class="row gy-3">
     <!-- JS inserirà qui le card -->
   </div>
+  <!-- Modal Dettaglio Torrent -->
+    <div class="modal fade" id="torrentModal" tabindex="-1" aria-labelledby="torrentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="torrentModalLabel">Dettaglio torrent</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+        </div>
+        <div class="modal-body">
+            <div id="torrent-details" class="mb-3">
+            <!-- dettagli torrent -->
+            </div>
+
+            <hr>
+
+            <h6>Commenti</h6>
+            <div id="comments-list" class="mb-3">
+            <!-- lista commenti -->
+            </div>
+
+            <h6>Aggiungi commento</h6>
+            <form id="comment-form" class="row g-2">
+            <div class="col-md-4">
+                <input type="text" id="comment-author" class="form-control" placeholder="Nome (facoltativo)">
+            </div>
+            <div class="col-md-2">
+                <select id="comment-rating" class="form-select">
+                <option value="5" selected>5 ⭐</option>
+                <option value="4">4 ⭐</option>
+                <option value="3">3 ⭐</option>
+                <option value="2">2 ⭐</option>
+                <option value="1">1 ⭐</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group">
+                <input type="text" id="comment-text" class="form-control" maxlength="160" placeholder="Commento (max 160 caratteri)">
+                <button type="submit" class="btn btn-primary">Invia</button>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <small class="text-muted">Media voto e conteggio sono aggiornati automaticamente.</small>
+        </div>
+        </div>
+    </div>
+    </div>
+
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="main.js"></script>
+
 </body>
 </html>
